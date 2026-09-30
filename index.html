@@ -1,0 +1,66 @@
+  // Filter state
+  const [category, setCategory] = useState("all");
+
+  // Filter products
+  const filteredProducts = allData.filter((item) => {
+    if (category === "all") {
+      return true;
+    }
+
+    return item.category === category;
+  });
+
+  return (
+    <div className="bg-purple py-20">
+      <div className="w-330 m-auto">
+
+        {/* FILTER */}
+        <div className="flex gap-4 mb-10">
+
+          <button onClick={() => setCategory("all")}>
+            All
+          </button>
+
+          <button onClick={() => setCategory("beauty")}>
+            Beauty
+          </button>
+
+          <button onClick={() => setCategory("fragrances")}>
+            Fragrances
+          </button>
+
+          <button onClick={() => setCategory("furniture")}>
+            Furniture
+          </button>
+
+          <button onClick={() => setCategory("groceries")}>
+            Groceries
+          </button>
+
+        </div>
+
+
+
+
+         <div className="flex flex-wrap justify-between gap-y-3">
+
+          {filteredProducts.map((item) => (
+            <div
+              key={item.id}
+              className="py-10 px-10 bg-black text-white"
+            >
+              <Image imgSrc={item.thumbnail} />
+
+              <h4>{item.title}</h4>
+
+              <h4>${item.price}</h4>
+
+              <h4>{item.category}</h4>
+
+              <button onClick={increment}>
+                ADD TO CART
+              </button>
+            </div>
+          ))}
+
+        </div>
